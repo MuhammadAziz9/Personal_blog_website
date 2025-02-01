@@ -11,11 +11,16 @@
     <header>
         <h1><a href="{% url 'post_view' %}">Blog1</a></h1>
     </header>
-    {% if uset.is_autenticated %}
-    <h4>Xush kelibsiz ,{{user.username}}</h4>
-    {% else %}
-    <a href="{% url 'login' %}">Saytga kirish</a>
-    {% endif %}
+    {% if user.is_authenticated and user.username %}
+    <h4>Xush kelibsiz, {{ user.username }}</h4>
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Chiqib ketish</button>
+    </form>
+            {% else %}
+                <a href="{% url 'login' %}">Saytga kirish</a>
+            {% endif %}
+
     <div>
         {% block content %}
         {% endblock content %}
