@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css'%}">
+    <title>Blog1</title>
+</head>
+<body>
+    <header>
+        <h1><a href="{% url 'post_view' %}">Blog1</a></h1>
+    </header>
+    {% if uset.is_autenticated %}
+    <h4>Xush kelibsiz ,{{user.username}}</h4>
+    {% else %}
+    <a href="{% url 'login' %}">Saytga kirish</a>
+    {% endif %}
+    <div>
+        {% block content %}
+        {% endblock content %}
+    </div>
+    <footer>
+        <h2><a href="{% url 'post_create' %}">Yangi post yozish</a></h2>
+    </footer>
+</body>
+</html>

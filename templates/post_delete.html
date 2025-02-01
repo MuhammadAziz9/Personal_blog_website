@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Postni o'chirish</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{post.title}}ni o'chirmoqchimisiz?<br>
+        <input type="submit" value="O'chirish">
+    </form>
+    <a href="{% url 'post_view' %}">Ortga qaytish</a>
+{% endblock content %}
